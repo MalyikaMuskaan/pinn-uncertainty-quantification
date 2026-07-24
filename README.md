@@ -12,7 +12,6 @@
 [Phases](#phase-by-phase-summary) |
 [Key Findings](#key-findings-across-phases) |
 [Dashboard](#running-the-dashboard) |
-[Repo Structure](#repository-structure) |
 [Contact](#contact)
 
 </div>
@@ -206,31 +205,6 @@ npm run dev
 ```
 
 Then open the local URL shown in the terminal.
-
-## Repository structure
-
-```
-pinn-uncertainty-quantification/
-|
-|-- burgers_pinn/          Phases 0-3, 6 -- baseline PINN, UQ comparison,
-|                           failure analysis, ablations
-|
-|-- ocean_pinn/             Ocean/Red Sea advection-diffusion + ensemble UQ
-|
-|-- inverse_problem/        Phase 4 -- parameter recovery, robustness sweep
-|
-|-- neural_operator/        Phase 5 -- FNO vs PINN comparison
-|
-|-- darcy_2d/               2-D Darcy flow extension
-|
-|-- dashboard/              Phase 7 -- interactive results dashboard (React/Vite)
-|
-|-- assets/                 README images/banner
-|
-|-- README.md                This file
-```
-
-Each subfolder contains its own `NOTES.md` with full methodology and results.
 
 ---
 
