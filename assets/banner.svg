@@ -1,0 +1,23 @@
+<svg width="900" height="140" viewBox="0 0 900 140" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4fb8ff"/>
+      <stop offset="50%" stop-color="#a8e0ff"/>
+      <stop offset="100%" stop-color="#4fb8ff"/>
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050403"/>
+      <stop offset="100%" stop-color="#0a1520"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="140" rx="12" fill="url(#bgGrad)"/>
+  <text x="450" y="62" font-family="Georgia, 'Times New Roman', serif" font-size="34" font-weight="bold" fill="url(#titleGrad)" text-anchor="middle">
+    Uncertainty-Aware Physics-Informed Learning
+  </text>
+  <text x="450" y="95" font-family="Arial, sans-serif" font-size="15" fill="#8fa8bf" text-anchor="middle">
+    Physics-Informed Neural Networks x Uncertainty Quantification
+  </text>
+  <text x="450" y="118" font-family="Arial, sans-serif" font-size="12" letter-spacing="2" fill="#4fb8ff" text-anchor="middle">
+    7 PHASES  •  3 UQ METHODS  •  1 SYSTEMATIC RESEARCH THREAD
+  </text>
+</svg>

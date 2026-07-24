@@ -1,8 +1,6 @@
 <div align="center">
 
-# Uncertainty-Aware Physics-Informed Learning
-
-### Physics-Informed Neural Networks x Uncertainty Quantification, across nonlinear PDEs, inverse problems, and operator learning
+![Uncertainty-Aware Physics-Informed Learning](./assets/banner.svg)
 
 [![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org/)
@@ -10,12 +8,11 @@
 [![Status](https://img.shields.io/badge/Status-Complete-4fb8ff?style=for-the-badge)](#)
 [![License](https://img.shields.io/badge/License-MIT-lightgrey?style=for-the-badge)](#)
 
-**7 phases - 3 UQ methods - 1 systematic research thread**
-
 [Overview](#overview) |
 [Phases](#phase-by-phase-summary) |
 [Key Findings](#key-findings-across-phases) |
 [Dashboard](#running-the-dashboard) |
+[Repo Structure](#repository-structure) |
 [Contact](#contact)
 
 </div>
@@ -49,7 +46,7 @@ A vanilla PINN solving the viscous Burgers' equation, validated against a Crank-
 | Metric | Value |
 |---|---|
 | MSE | `7.8e-4` |
-| Shock | cleanly captured |
+| Shock | 🟢 cleanly captured |
 
 [`burgers_pinn/`](./burgers_pinn/)
 
@@ -64,9 +61,9 @@ Three UQ methods compared on identical terms:
 
 | Method | MSE | ECE (calibration) | 90% Coverage |
 |---|---|---|---|
-| **Deep Ensemble (winner)** | `7.82e-4` | **0.084** | **88.6%** |
-| Bayesian PINN (VI) | `8.92e-2` | 0.086 | 68.1% |
-| MC Dropout | `9.44e-3` | 0.137 | 83.9% |
+| 🟢 **Deep Ensemble (winner)** | `7.82e-4` | **0.084** | **88.6%** |
+| 🔴 Bayesian PINN (VI) | `8.92e-2` | 0.086 | 68.1% |
+| 🟡 MC Dropout | `9.44e-3` | 0.137 | 83.9% |
 
 Deep Ensembles won decisively on both accuracy and calibration. The Bayesian PINN's mean-field variational posterior produced spatially *uniform* uncertainty -- a known failure mode when independent weight distributions are a poor fit for PDE residual losses.
 
@@ -99,11 +96,13 @@ Recovering the unknown viscosity (nu) from sparse, noisy sensor data -- 9 condit
 
 A first attempt produced a **400-700% error** regardless of noise or sensor count -- a red flag for a genuine bug. Root-cause analysis found two compounding issues (loss-term imbalance + a starved gradient signal for nu sharing an optimizer with 200+ network weights). The fix -- Adam warm-up then L-BFGS refinement, auto-balanced loss -- brought error down to:
 
-| Result | Value |
-|---|---|
-| Error range (fixed) | `17% - 240%` |
-| Best case (100 sensors, low noise) | `17.6%` |
-| CI coverage | 2 / 9 conditions |
+| Sensors | Noise 0.5% | Noise 1.0% | Noise 2.0% |
+|---|---|---|---|
+| 20  | 🔴 78.5% | 🔴 183.7% | 🔴 240.8% |
+| 50  | 🔴 106.2% | 🟡 93.0% | 🟡 58.5% |
+| 100 | 🟡 94.5% | 🟢 28.3% | 🟢 **17.6%** |
+
+CI coverage: 2 / 9 conditions
 
 [`inverse_problem/`](./inverse_problem/)
 
@@ -117,8 +116,8 @@ A Fourier Neural Operator (FNO) trained once across 800 initial conditions, vs. 
 
 | Method | Rel. L2 error | Training | Inference |
 |---|---|---|---|
-| **FNO (winner)** | **6.98%** | 76s (one-time) | ~2.7-5.8 ms |
-| PINN (per-instance) | 32.75% | 22s **per instance** | ~1 ms |
+| 🟢 **FNO (winner)** | **6.98%** | 76s (one-time) | ~2.7-5.8 ms |
+| 🔴 PINN (per-instance) | 32.75% | 22s **per instance** | ~1 ms |
 
 FNO is ~4.7x more accurate, and becomes cheaper than retraining a PINN after only ~4 new scenarios.
 
@@ -135,7 +134,7 @@ Extending the pipeline from 1-D to 2-D using a manufactured solution, verified n
 | Metric | Value |
 |---|---|
 | MSE | `3.26e-10` |
-| Relative L2 error | `0.004%` |
+| Relative L2 error | 🟢 `0.004%` |
 | Training time | `6.1 min` |
 
 [`darcy_2d/`](./darcy_2d/)
@@ -150,14 +149,22 @@ Extending the pipeline from 1-D to 2-D using a manufactured solution, verified n
 
 | Shock sharpness | Error |
 |---|---|
-| 1x (baseline) | 4.56% |
-| 2x | 20.8% |
-| 5x | 33.3% |
-| 10x | 34.8% |
+| 1x (baseline) | 🟢 4.56% |
+| 2x | 🟡 20.8% |
+| 5x | 🔴 33.3% |
+| 10x | 🔴 34.8% |
 
 **Ablation A (ensemble size)** -- MSE improves monotonically (M=3 to 20), but calibration is *not* monotonic (M=10 best calibrated).
 
-**Ablation B (loss weighting)** -- the surprise: auto-balancing (which fixed the inverse problem) performed **worst** here (51.2% error) vs. 4.2% for simple baseline weighting -- proof that techniques don't transfer automatically.
+**Ablation B (loss weighting)** -- the surprise:
+
+| Scheme | Rel. L2 error |
+|---|---|
+| 🟢 **Fixed weighting (winner)** | **4.21%** |
+| 🟡 Uniform | 6.70% |
+| 🔴 Auto-balanced | 51.21% |
+
+Auto-balancing (which fixed the inverse problem) performed **worst** here -- proof that techniques don't transfer automatically.
 
 [`burgers_pinn/`](./burgers_pinn/)
 
@@ -200,7 +207,27 @@ npm run dev
 
 Then open the local URL shown in the terminal.
 
+## Repository structure
 
+```
+pinn-uncertainty-quantification/
+|
+|-- burgers_pinn/          Phases 0-3, 6 -- baseline PINN, UQ comparison,
+|                           failure analysis, ablations
+|
+|-- ocean_pinn/             Ocean/Red Sea advection-diffusion + ensemble UQ
+|
+|-- inverse_problem/        Phase 4 -- parameter recovery, robustness sweep
+|
+|-- neural_operator/        Phase 5 -- FNO vs PINN comparison
+|
+|-- darcy_2d/               2-D Darcy flow extension
+|
+|-- dashboard/              Phase 7 -- interactive results dashboard (React/Vite)
+|
+|-- assets/                 README images/banner
+|
+|-- README.md                This file
 ```
 
 Each subfolder contains its own `NOTES.md` with full methodology and results.
