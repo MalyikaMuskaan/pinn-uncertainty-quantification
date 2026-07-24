@@ -1,0 +1,4 @@
+Method,MSE,ECE,90% Coverage,Std max,Train time (min),Inference time (s)
+Deep Ensemble (10 members),7.8181e-04,0.0835,0.8855,3.571e-01,89.4,0.1
+Bayesian PINN (VI),8.9186e-02,0.0860,0.6811,3.372e-01,10.0,3.0
+MC Dropout (p=0.05),9.4369e-03,0.1374,0.8389,5.413e-01,34.5,14.3

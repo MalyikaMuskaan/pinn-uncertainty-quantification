@@ -1,0 +1,26 @@
+[
+  {
+    "scheme": "a_baseline",
+    "label": "(a) Baseline  \u03bb_ic=10, \u03bb_bc=10",
+    "lambda_ic": 10.0,
+    "lambda_bc": 10.0,
+    "mse": 0.0006657541691023197,
+    "rel_l2": 0.042097123356766825
+  },
+  {
+    "scheme": "b_uniform",
+    "label": "(b) Uniform  \u03bb_ic=1, \u03bb_bc=1",
+    "lambda_ic": 1.0,
+    "lambda_bc": 1.0,
+    "mse": 0.0016849671070327157,
+    "rel_l2": 0.06697167888649898
+  },
+  {
+    "scheme": "c_auto",
+    "label": "(c) Auto-balanced  (\u03bb\u00b7L \u2248 equal at init)",
+    "lambda_ic": 0.01901320565216649,
+    "lambda_bc": 0.07541457174434875,
+    "mse": 0.09853162855926298,
+    "rel_l2": 0.5121336391457704
+  }
+]

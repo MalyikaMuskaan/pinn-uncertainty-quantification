@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# PyTorch checkpoints (large binary files — don't belong in git)
+*.pt
+*.pth
+
+# Zip archives used only for transferring code to Colab
+*.zip
+
+# Node / dashboard
+dashboard/node_modules/
+dashboard/dist/
+dashboard/.vite/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.bob/
+
+# Large generated datasets (regeneratable via data_gen.py)
+neural_operator/outputs/dataset.npz

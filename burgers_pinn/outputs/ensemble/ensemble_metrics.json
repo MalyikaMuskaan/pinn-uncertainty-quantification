@@ -1,0 +1,9 @@
+{
+  "method": "Deep Ensemble (10 members)",
+  "mse": 0.0007818122973134642,
+  "ece": 0.08354851973684209,
+  "coverage_90": 0.885546875,
+  "train_time_s": 5364.0,
+  "inference_time_s": 0.1302628517150879,
+  "n_members": 10
+}

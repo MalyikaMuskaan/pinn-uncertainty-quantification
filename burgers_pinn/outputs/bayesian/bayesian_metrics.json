@@ -1,0 +1,10 @@
+{
+  "method": "Bayesian PINN (VI)",
+  "mse": 0.08889166444178861,
+  "ece": 0.07681496710526318,
+  "coverage_90": 0.6873828125,
+  "train_time_s": 598.4947085380554,
+  "inference_time_s": 4.502444267272949,
+  "n_epochs": 5000,
+  "n_mc_eval": 200
+}
