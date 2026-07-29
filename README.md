@@ -61,7 +61,7 @@ Three UQ methods compared on identical terms:
 | Method | MSE | ECE (calibration) | 90% Coverage |
 |---|---|---|---|
 | 🟢 **Deep Ensemble (winner)** | `7.82e-4` | **0.084** | **88.6%** |
-| 🔴 Bayesian PINN (VI) | `8.92e-2` | 0.086 | 68.1% |
+| 🔴 Bayesian PINN (VI) | `8.92e-2` | 0.0768 | 68.7% |
 | 🟡 MC Dropout | `9.44e-3` | 0.137 | 83.9% |
 
 Deep Ensembles won decisively on both accuracy and calibration. The Bayesian PINN's mean-field variational posterior produced spatially *uniform* uncertainty -- a known failure mode when independent weight distributions are a poor fit for PDE residual losses.
