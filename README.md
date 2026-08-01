@@ -9,6 +9,8 @@
 [![License](https://img.shields.io/badge/License-MIT-lightgrey?style=for-the-badge)](#)
 
 [Overview](#overview) |
+[Motivation](#motivation) |
+[Approach](#approach) |
 [Phases](#phase-by-phase-summary) |
 [Key Findings](#key-findings-across-phases) |
 [Dashboard](#running-the-dashboard) |
@@ -33,6 +35,48 @@ difficulty: nonlinearity, sparse data, higher dimensions, and generalization
 across problem instances.
 
 > An interactive dashboard presenting all results lives in [`pinn-dashboard/`](./pinn-dashboard/) -- see [Running the dashboard](#running-the-dashboard).
+
+<br>
+
+## Motivation
+
+Scientific and engineering decisions built on machine-learned surrogates -- from
+structural safety margins to ocean and climate forecasts -- need more than a
+point prediction; they need a trustworthy sense of *how much to trust it*. This
+portfolio treats that requirement as a first-class design constraint rather than
+an afterthought, testing it across problem types where it gets progressively
+harder to satisfy: a clean nonlinear PDE, a linear PDE, sparse noisy inverse
+data, higher dimensions, and generalization across problem instances via
+operator learning.
+
+The ocean/advection-diffusion phase in particular was chosen as a first step
+toward physics-informed, uncertainty-aware modeling of real ocean systems --
+motivated by problems like Red Sea marine heatwave and coral bleaching
+forecasting, where knowing *how confident* a forecast is matters as much as the
+forecast itself. A follow-up project extending this pipeline to real
+Copernicus Marine/NOAA Red Sea data (SST, salinity, currents) is in progress.
+
+<br>
+
+## Approach
+
+Every PINN in this repository is trained to jointly minimize a data-fit term
+and a physics-residual term, so the network is constrained to satisfy the
+governing PDE, not just interpolate observations:
+
+$$\mathcal{L} = \lambda_{data}\mathcal{L}_{data} + \lambda_{phys}\mathcal{L}_{phys} + \lambda_{bc}\mathcal{L}_{bc} + \lambda_{ic}\mathcal{L}_{ic}$$
+
+where $\mathcal{L}_{phys}$ is the mean-squared PDE residual evaluated at
+collocation points via automatic differentiation, and $\mathcal{L}_{bc}$,
+$\mathcal{L}_{ic}$ enforce boundary and initial conditions. Uncertainty is
+obtained by training an ensemble of $M$ independently-initialized networks and
+treating their spread as a predictive distribution (Deep Ensembles), compared
+against two alternatives -- Bayesian PINNs via mean-field variational inference,
+and MC Dropout -- under identical accuracy *and* calibration metrics (ECE, 90%
+interval coverage) rather than accuracy alone. Phase 4 inverts this setup to
+recover an unknown physical parameter from sparse sensor data, and Phase 5
+replaces the PDE-residual solver with a Fourier Neural Operator trained once
+across many initial conditions.
 
 <br>
 
@@ -196,6 +240,20 @@ Left out by deliberate design, not failure:
 - 2-D/3-D extensions beyond Darcy flow (e.g., Navier-Stokes)
 - Calibration correction for the inverse problem's CI under-coverage (conformal prediction, M>=30)
 - Physics-informed regularization for the FNO's training loss
+
+**On the inverse problem's remaining error (17-240% depending on sensor density/noise):**
+recovering a single scalar parameter from as few as 20 noisy sensors is an
+ill-posed regime by construction -- the fix in Phase 4 resolved a genuine
+optimization bug, not the underlying data-scarcity limit. Error drops sharply
+as sensor count increases (240.8% to 17.6% from 20 to 100 sensors at matched
+noise), which is the expected signature of an identifiability problem rather
+than a broken model. Next step: conformal calibration to make the 90% CI
+coverage trustworthy at low sensor counts, rather than only improving the
+point estimate.
+
+**In progress:** extending the ocean/advection-diffusion phase to real Red Sea
+data (Copernicus Marine/NOAA) with a marine-heatwave/coral-bleaching
+early-warning use case, validated against a real historical event.
 
 ## Running the dashboard
 
