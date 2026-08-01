@@ -4,7 +4,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org/)
-[![React](https://img.shields.io/badge/React-Dashboard-61DAFB?style=for-the-badge&logo=react&logoColor=black)](./dashboard)
+[![React](https://img.shields.io/badge/React-Dashboard-61DAFB?style=for-the-badge&logo=react&logoColor=black)](./pinn-dashboard)
 [![Status](https://img.shields.io/badge/Status-Complete-4fb8ff?style=for-the-badge)](#)
 [![License](https://img.shields.io/badge/License-MIT-lightgrey?style=for-the-badge)](#)
 
@@ -32,16 +32,16 @@ confident it is.** Each phase tests that idea against a different kind of
 difficulty: nonlinearity, sparse data, higher dimensions, and generalization
 across problem instances.
 
-> An interactive dashboard presenting all results lives in [`dashboard/`](./dashboard/) -- see [Running the dashboard](#running-the-dashboard).
+> An interactive dashboard presenting all results lives in [`pinn-dashboard/`](./pinn-dashboard/) -- see [Running the dashboard](#running-the-dashboard).
 
 <br>
 
 ## Phase-by-phase summary
 
-<table>
-<tr><td width="90"><b>P0-2</b></td><td>
+<details>
+<summary><b>P0-2 -- Burgers' equation baseline</b> (click to expand)</summary>
+<br>
 
-### Burgers' equation baseline
 A vanilla PINN solving the viscous Burgers' equation, validated against a Crank-Nicolson finite-difference reference solver rather than an approximate closed form.
 
 | Metric | Value |
@@ -51,8 +51,7 @@ A vanilla PINN solving the viscous Burgers' equation, validated against a Crank-
 
 [`burgers_pinn/`](./burgers_pinn/)
 
-</td></tr>
-</table>
+</details>
 
 <details>
 <summary><b>P3 -- Uncertainty quantification comparison</b> (click to expand)</summary>
@@ -177,7 +176,7 @@ Auto-balancing (which fixed the inverse problem) performed **worst** here -- pro
 
 A React/Vite dashboard presenting every phase above with data loaded live from each phase's actual output files -- nothing fabricated.
 
-[`dashboard/`](./dashboard/)
+[`pinn-dashboard/`](./pinn-dashboard/)
 
 </details>
 
@@ -205,7 +204,7 @@ Left out by deliberate design, not failure:
 To run locally instead:
 
 ```bash
-cd dashboard
+cd pinn-dashboard
 npm install
 npm run dev
 ```
@@ -216,8 +215,7 @@ npm run dev
 
 **Malyika Muskaan**
 
-[![GitHub](https://img.shields.io/badge/GitHub-MalyikaMuskaan-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/MalyikaMuskaan)
-[![Email](https://img.shields.io/badge/Email-malyikamuskaann%40gmail.com-4fb8ff?style=flat-square&logo=gmail&logoColor=white)](mailto:malyikamuskaann@gmail.com)
+[![Email](https://img.shields.io/badge/Email-malyikamuskaann%40gmail.com-4fb8ff?style=flat-square&logo=gmail&logoColor=white)](https://mail.google.com/mail/?view=cm&fs=1&to=malyikamuskaann@gmail.com)
 
 *Open to discussing this research, collaboration, or PhD opportunities in AI/ML and scientific machine learning.*
 
