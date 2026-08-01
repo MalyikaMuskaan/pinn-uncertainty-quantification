@@ -14,6 +14,8 @@
 [Dashboard](#running-the-dashboard) |
 [Contact](#contact)
 
+### 🔗 [Live Dashboard](https://pinn-uncertainty-quantification-nine.vercel.app/)
+
 </div>
 
 ---
@@ -198,6 +200,10 @@ Left out by deliberate design, not failure:
 
 ## Running the dashboard
 
+🔗 **Live:** [pinn-uncertainty-quantification-nine.vercel.app](https://pinn-uncertainty-quantification-nine.vercel.app/)
+
+To run locally instead:
+
 ```bash
 cd dashboard
 npm install
@@ -210,8 +216,8 @@ npm run dev
 
 **Malyika Muskaan**
 
-[![GitHub](https://img.shields.io/badge/GitHub-MalyikaMuskaan-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/MalyikaMuskaan)
-[![Email](https://img.shields.io/badge/Email-malyikamuskaann%40gmail.com-4fb8ff?style=for-the-badge&logo=gmail&logoColor=white)](mailto:malyikamuskaann@gmail.com)
+[![GitHub](https://img.shields.io/badge/GitHub-MalyikaMuskaan-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/MalyikaMuskaan)
+[![Email](https://img.shields.io/badge/Email-malyikamuskaann%40gmail.com-4fb8ff?style=flat-square&logo=gmail&logoColor=white)](mailto:malyikamuskaann@gmail.com)
 
 *Open to discussing this research, collaboration, or PhD opportunities in AI/ML and scientific machine learning.*
 
