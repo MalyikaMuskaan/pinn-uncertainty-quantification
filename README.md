@@ -111,6 +111,8 @@ Three UQ methods compared on identical terms:
 
 Deep Ensembles won decisively on both accuracy and calibration. The Bayesian PINN's mean-field variational posterior produced spatially *uniform* uncertainty -- a known failure mode when independent weight distributions are a poor fit for PDE residual losses.
 
+<p align="center"><img src="./burgers_pinn/outputs/comparison/calibration_comparison.png" alt="Calibration comparison across Deep Ensemble, Bayesian PINN, and MC Dropout" width="700"></p>
+
 [`burgers_pinn/COMPARISON.md`](./burgers_pinn/COMPARISON.md)
 
 </details>
@@ -148,6 +150,8 @@ A first attempt produced a **400-700% error** regardless of noise or sensor coun
 
 CI coverage: 2 / 9 conditions
 
+<p align="center"><img src="./inverse_problem/outputs/robustness_summary.png" alt="Recovered viscosity distribution across sensor count and noise level" width="750"></p>
+
 [`inverse_problem/`](./inverse_problem/)
 
 </details>
@@ -164,6 +168,8 @@ A Fourier Neural Operator (FNO) trained once across 800 initial conditions, vs. 
 | 🔴 PINN (per-instance) | 32.75% | 22s **per instance** | ~1 ms |
 
 FNO is ~4.7x more accurate, and becomes cheaper than retraining a PINN after only ~4 new scenarios.
+
+<p align="center"><img src="./neural_operator/outputs/plots/summary_table.png" alt="FNO vs PINN comparison table: relative L2 error, inference time, training cost" width="750"></p>
 
 [`neural_operator/`](./neural_operator/)
 
@@ -198,7 +204,11 @@ Extending the pipeline from 1-D to 2-D using a manufactured solution, verified n
 | 5x | 🔴 33.3% |
 | 10x | 🔴 34.8% |
 
+<p align="center"><img src="./burgers_pinn/outputs/failure_analysis/failure_error_vs_nu.png" alt="PINN accuracy degradation vs viscosity (shock sharpness)" width="550"></p>
+
 **Ablation A (ensemble size)** -- MSE improves monotonically (M=3 to 20), but calibration is *not* monotonic (M=10 best calibrated).
+
+<p align="center"><img src="./burgers_pinn/outputs/ablation/ensemble_size/ablation_ensemble_size.png" alt="ECE and 90% coverage as a function of ensemble size" width="600"></p>
 
 **Ablation B (loss weighting)** -- the surprise:
 
@@ -209,6 +219,8 @@ Extending the pipeline from 1-D to 2-D using a manufactured solution, verified n
 | 🔴 Auto-balanced | 51.21% |
 
 Auto-balancing (which fixed the inverse problem) performed **worst** here -- proof that techniques don't transfer automatically.
+
+<p align="center"><img src="./burgers_pinn/outputs/ablation/loss_weighting/ablation_loss_weighting.png" alt="Final MSE under fixed, uniform, and auto-balanced loss weighting schemes" width="600"></p>
 
 [`burgers_pinn/`](./burgers_pinn/)
 
