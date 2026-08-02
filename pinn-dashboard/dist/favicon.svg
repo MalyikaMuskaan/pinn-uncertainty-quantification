@@ -1,5 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <path d="M16 4 C8 12, 5 18, 7 22 C9 26, 13 28, 16 28 C19 28, 23 26, 25 22 C27 18, 24 12, 16 4Z"
-        fill="#ff8f6b" opacity="0.85"/>
-  <circle cx="13" cy="20" r="2" fill="#050403" opacity="0.4"/>
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#173a5e"/>
+      <stop offset="100%" stop-color="#0f2c4c"/>
+    </linearGradient>
+  </defs>
+
+  <!-- rounded square background -->
+  <rect x="0" y="0" width="64" height="64" rx="14" fill="url(#bg)"/>
+
+  <!-- uncertainty band around the curve -->
+  <path d="M10,24 C22,24 26,23 32,29
+           C37,34 39,42 44,44
+           C47,45 50,45 54,45
+           L54,36
+           C50,36 47,36 45,35
+           C41,33 39,27 34,22
+           C28,17 22,16 10,16 Z"
+        fill="#4fb8ff" opacity="0.35"/>
+
+  <!-- mean curve -->
+  <path d="M10,20 C22,20 26,19 32,26 C38,33 40,41 54,40.5"
+        fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round"/>
+
+  <!-- baseline -->
+  <line x1="10" y1="47" x2="54" y2="47" stroke="#4fb8ff" stroke-width="2" opacity="0.5"/>
 </svg>
