@@ -1,23 +1,70 @@
-<svg width="900" height="140" viewBox="0 0 900 140" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 1200 280" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Helvetica, Arial, sans-serif">
   <defs>
-    <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#4fb8ff"/>
-      <stop offset="50%" stop-color="#a8e0ff"/>
-      <stop offset="100%" stop-color="#4fb8ff"/>
-    </linearGradient>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#050403"/>
-      <stop offset="100%" stop-color="#0a1520"/>
+    <linearGradient id="bandFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4fb8ff" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#4fb8ff" stop-opacity="0.06"/>
     </linearGradient>
   </defs>
-  <rect width="900" height="140" rx="12" fill="url(#bgGrad)"/>
-  <text x="450" y="62" font-family="Georgia, 'Times New Roman', serif" font-size="34" font-weight="bold" fill="url(#titleGrad)" text-anchor="middle">
-    Uncertainty-Aware Physics-Informed Learning
-  </text>
-  <text x="450" y="95" font-family="Arial, sans-serif" font-size="15" fill="#8fa8bf" text-anchor="middle">
-    Physics-Informed Neural Networks x Uncertainty Quantification
-  </text>
-  <text x="450" y="118" font-family="Arial, sans-serif" font-size="12" letter-spacing="2" fill="#4fb8ff" text-anchor="middle">
-    7 PHASES  •  3 UQ METHODS  •  1 SYSTEMATIC RESEARCH THREAD
-  </text>
+
+  <!-- ============ Graphic: ensemble of solution curves forming a shock, with uncertainty band ============ -->
+  <g transform="translate(50, 40)">
+
+    <!-- baseline collocation points -->
+    <g fill="#c7d2dc">
+      <circle cx="8"   cy="176" r="3"/>
+      <circle cx="38"  cy="176" r="3"/>
+      <circle cx="68"  cy="176" r="3"/>
+      <circle cx="98"  cy="176" r="3"/>
+      <circle cx="128" cy="176" r="3"/>
+      <circle cx="158" cy="176" r="3"/>
+      <circle cx="188" cy="176" r="3"/>
+      <circle cx="218" cy="176" r="3"/>
+      <circle cx="248" cy="176" r="3"/>
+      <circle cx="278" cy="176" r="3"/>
+      <circle cx="308" cy="176" r="3"/>
+      <circle cx="338" cy="176" r="3"/>
+    </g>
+
+    <!-- uncertainty band: narrow away from the shock, wide around it -->
+    <path d="M0,42 C60,42 95,40 130,55
+             C158,68 168,96 178,118
+             C188,140 205,150 230,152
+             C270,154 310,153 350,153
+             L350,110
+             C310,109 270,110 232,107
+             C208,105 196,95 188,80
+             C180,64 168,46 130,36
+             C95,24 60,24 0,24 Z"
+          fill="url(#bandFill)"/>
+
+    <!-- faint ensemble members -->
+    <g fill="none" stroke="#8fc7ff" stroke-width="2" stroke-linecap="round" opacity="0.55">
+      <path d="M0,30 C60,30 96,29 128,42 C156,53 170,80 182,104 C194,128 212,140 240,142 C280,144 315,143 350,143"/>
+      <path d="M0,36 C60,36 94,35 126,50 C154,63 166,90 180,112 C192,134 208,146 236,148 C276,150 313,149 350,149"/>
+      <path d="M0,22 C60,22 92,21 124,32 C154,42 168,66 182,90 C196,114 214,128 242,130 C280,132 314,131 350,131"/>
+    </g>
+
+    <!-- mean prediction curve -->
+    <path d="M0,28 C60,28 95,27 128,40 C158,52 170,80 182,106 C194,132 212,146 240,148 C278,150 314,149 350,149"
+          fill="none" stroke="#0f2c4c" stroke-width="4" stroke-linecap="round"/>
+
+    <!-- axis -->
+    <line x1="0" y1="176" x2="350" y2="176" stroke="#c7d2dc" stroke-width="1.5"/>
+  </g>
+
+  <!-- ============ Divider ============ -->
+  <line x1="450" y1="55" x2="450" y2="225" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- ============ Title text ============ -->
+  <g transform="translate(486, 0)">
+    <text x="0" y="120" font-size="42" font-weight="700" fill="#0f2c4c" letter-spacing="0.2">
+      Uncertainty-Aware
+    </text>
+    <text x="0" y="168" font-size="42" font-weight="700" fill="#0f2c4c" letter-spacing="0.2">
+      Physics-Informed Learning
+    </text>
+    <text x="2" y="200" font-size="17" fill="#5b6b7c" letter-spacing="0.3">
+      Deep ensembles &#183; Bayesian PINNs &#183; MC Dropout &#183; Neural operators
+    </text>
+  </g>
 </svg>
