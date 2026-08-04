@@ -93,6 +93,8 @@ A vanilla PINN solving the viscous Burgers' equation, validated against a Crank-
 | MSE | `7.8e-4` |
 | Shock | 🟢 cleanly captured |
 
+<p align="center"><img src="./burgers_pinn/outputs/ensemble/ensemble_mean_heatmap.png" alt="Deep Ensemble mean prediction for Burgers' equation, showing the shock" width="420"><img src="./burgers_pinn/outputs/ensemble/ensemble_std_heatmap.png" alt="Deep Ensemble uncertainty (std) concentrated along the shock" width="420"></p>
+
 [`burgers_pinn/`](./burgers_pinn/)
 
 </details>
@@ -105,9 +107,9 @@ Three UQ methods compared on identical terms:
 
 | Method | MSE | ECE (calibration) | 90% Coverage |
 |---|---|---|---|
-| 🟢 **Deep Ensemble (winner)** | `7.82e-4` | **0.084** | **88.6%** |
+| 🟢 **Deep Ensemble (winner)** | `7.82e-4` | **0.0835** | **88.6%** |
 | 🔴 Bayesian PINN (VI) | `8.92e-2` | 0.0768 | 68.7% |
-| 🟡 MC Dropout | `9.44e-3` | 0.137 | 83.9% |
+| 🟡 MC Dropout | `9.39e-3` | 0.1376 | 83.9% |
 
 Deep Ensembles won decisively on both accuracy and calibration. The Bayesian PINN's mean-field variational posterior produced spatially *uniform* uncertainty -- a known failure mode when independent weight distributions are a poor fit for PDE residual losses.
 
@@ -125,10 +127,13 @@ The same Deep Ensemble UQ pipeline applied to a linear advection-diffusion equat
 
 | Metric | Value |
 |---|---|
-| ECE | `0.102` |
+| MSE | `7.0e-5` |
+| ECE | `0.1018` |
 | 90% Coverage | `76.9%` |
 
 The key insight: ensemble members agree much more closely on this **linear** PDE (a single dominant solution basin), so their disagreement is a *weaker, less informative* uncertainty signal than in the nonlinear Burgers' case -- suggesting **Deep Ensembles are more informative for nonlinear PDEs than linear ones.**
+
+<p align="center"><img src="./ocean_pinn/outputs/ensemble/ensemble_std_heatmap.png" alt="Ensemble uncertainty for advection-diffusion, tracking the advected pulse diagonally rather than a fixed shock" width="600"></p>
 
 [`ocean_pinn/`](./ocean_pinn/)
 
@@ -144,7 +149,7 @@ A first attempt produced a **400-700% error** regardless of noise or sensor coun
 
 | Sensors | Noise 0.5% | Noise 1.0% | Noise 2.0% |
 |---|---|---|---|
-| 20  | 🔴 78.5% | 🔴 183.7% | 🔴 240.8% |
+| 20  | 🔴 78.5% | 🔴 183.6% | 🔴 240.8% |
 | 50  | 🔴 106.2% | 🟡 93.0% | 🟡 58.5% |
 | 100 | 🟡 94.5% | 🟢 28.3% | 🟢 **17.6%** |
 
@@ -164,8 +169,8 @@ A Fourier Neural Operator (FNO) trained once across 800 initial conditions, vs. 
 
 | Method | Rel. L2 error | Training | Inference |
 |---|---|---|---|
-| 🟢 **FNO (winner)** | **6.98%** | 76s (one-time) | ~2.7-5.8 ms |
-| 🔴 PINN (per-instance) | 32.75% | 22s **per instance** | ~1 ms |
+| 🟢 **FNO (winner)** | **6.98%** | 76s (one-time) | 2.7 ms (steady-state) |
+| 🔴 PINN (per-instance) | 32.75% | 21.6s **per instance** | ~1.0 ms |
 
 FNO is ~4.7x more accurate, and becomes cheaper than retraining a PINN after only ~4 new scenarios.
 
@@ -186,6 +191,8 @@ Extending the pipeline from 1-D to 2-D using a manufactured solution, verified n
 | MSE | `3.26e-10` |
 | Relative L2 error | 🟢 `0.004%` |
 | Training time | `6.1 min` |
+
+<p align="center"><img src="./darcy_2d/outputs/solution_comparison.png" alt="Darcy-flow PINN prediction vs exact manufactured solution vs pointwise error" width="750"></p>
 
 [`darcy_2d/`](./darcy_2d/)
 
